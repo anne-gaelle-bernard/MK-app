@@ -1,0 +1,24 @@
+{
+  "name": "MK Planner",
+  "short_name": "MK Planner",
+  "description": "Mini web app pour gérer ton schedule, habitudes et projets.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#122C4F",
+  "theme_color": "#122C4F",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
