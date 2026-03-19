@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MK Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="palette-grid">
+        <article class="tile tile-midnight">
+          <header class="tile-head">
+            <span class="tile-code">#122C4F</span>
+            <h1>Midnight</h1>
+            <p>Schedule</p>
+            <button type="button" class="tile-open js-open-tile" aria-expanded="false">Ouvrir</button>
+          </header>
+          <div class="tile-body">
+            <button type="button" class="tile-close js-close-tile">← Retour</button>
+            <div id="week-list" class="week-list"></div>
+          </div>
+        </article>
+
+        <article class="tile tile-pearl">
+          <header class="tile-head">
+            <span class="tile-code">#FBF9E4</span>
+            <h2>Pearl Perfect</h2>
+            <p>Habitude tracker</p>
+            <button type="button" class="tile-open js-open-tile" aria-expanded="false">Ouvrir</button>
+          </header>
+          <div class="tile-body">
+            <button type="button" class="tile-close js-close-tile">← Retour</button>
+            <form id="habit-form" class="mini-form">
+              <input id="habit-name" type="text" placeholder="Ajouter une habitude" required />
+              <button type="submit">Ajouter</button>
+            </form>
+
+            <ul id="habit-list" class="tile-list"></ul>
+          </div>
+        </article>
+
+        <article class="tile tile-noir">
+          <header class="tile-head">
+            <span class="tile-code">#000000</span>
+            <h2>Noir</h2>
+            <p>Projet</p>
+            <button type="button" class="tile-open js-open-tile" aria-expanded="false">Ouvrir</button>
+          </header>
+          <div class="tile-body">
+            <button type="button" class="tile-close js-close-tile">← Retour</button>
+            <form id="project-form" class="mini-form">
+              <input id="project-name" type="text" placeholder="Ajouter un projet" required />
+              <button type="submit">Ajouter</button>
+            </form>
+
+            <ul id="project-list" class="tile-list"></ul>
+          </div>
+        </article>
+
+        <article class="tile tile-ocean">
+          <header class="tile-head">
+            <span class="tile-code">#5B88B2</span>
+            <h2>Ocean</h2>
+            <p>Progression</p>
+            <button type="button" class="tile-open js-open-tile" aria-expanded="false">Ouvrir</button>
+          </header>
+
+          <div class="tile-body">
+            <button type="button" class="tile-close js-close-tile">← Retour</button>
+
+            <div class="progress-group">
+              <div class="progress-head">
+                <span>Schedule</span>
+                <strong id="schedule-progress-text">0%</strong>
+              </div>
+              <div class="progress-track"><div id="schedule-progress-fill" class="progress-fill"></div></div>
+            </div>
+
+            <div class="progress-group">
+              <div class="progress-head">
+                <span>Habitudes</span>
+                <strong id="habit-progress-text">0%</strong>
+              </div>
+              <div class="progress-track"><div id="habit-progress-fill" class="progress-fill habit"></div></div>
+            </div>
+
+            <div class="progress-group">
+              <div class="progress-head">
+                <span>Projets</span>
+                <strong id="project-progress-text">0%</strong>
+              </div>
+              <div class="progress-track"><div id="project-progress-fill" class="progress-fill project"></div></div>
+            </div>
+
+            <div class="progress-group">
+              <div class="progress-head">
+                <span>Progression totale</span>
+                <strong id="total-progress-text">0%</strong>
+              </div>
+              <div class="progress-track"><div id="total-progress-fill" class="progress-fill total"></div></div>
+            </div>
+
+            <div class="progress-group">
+              <div class="progress-head">
+                <span>Schedule bar</span>
+              </div>
+              <div id="schedule-bar" class="schedule-bar"></div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <template id="habit-item-template">
+      <li class="item-row">
+        <label class="item-main">
+          <input type="checkbox" class="js-habit-check" />
+          <span class="js-habit-label"></span>
+        </label>
+        <button class="danger js-delete-habit" type="button">×</button>
+      </li>
+    </template>
+
+    <template id="project-item-template">
+      <li class="item-row">
+        <label class="item-main">
+          <input type="checkbox" class="js-project-check" />
+          <span class="js-project-label"></span>
+        </label>
+        <button class="danger js-delete-project" type="button">×</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
