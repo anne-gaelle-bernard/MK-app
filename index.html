@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MK Planner</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#122C4F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MK Planner" />
+    <style>
+      #install-banner {
+        display: none;
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #122C4F;
+        color: #FBF9E4;
+        border: 2px solid #5B88B2;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        z-index: 9999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+      }
+      #install-banner.hidden { display: none !important; }
+      #btn-install {
+        background: #5B88B2;
+        color: #FBF9E4;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+      #btn-install:hover { background: #FBF9E4; color: #122C4F; }
+      #btn-install-close {
+        background: none;
+        border: none;
+        color: #FBF9E4;
+        cursor: pointer;
+        font-size: 1.2rem;
+        line-height: 1;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <main class="app">
@@ -35,7 +83,6 @@
               <input id="habit-name" type="text" placeholder="Ajouter une habitude" required />
               <button type="submit">Ajouter</button>
             </form>
-
             <ul id="habit-list" class="tile-list"></ul>
           </div>
         </article>
@@ -53,7 +100,6 @@
               <input id="project-name" type="text" placeholder="Ajouter un projet" required />
               <button type="submit">Ajouter</button>
             </form>
-
             <ul id="project-list" class="tile-list"></ul>
           </div>
         </article>
@@ -65,10 +111,8 @@
             <p>Progression</p>
             <button type="button" class="tile-open js-open-tile" aria-expanded="false">Ouvrir</button>
           </header>
-
           <div class="tile-body">
             <button type="button" class="tile-close js-close-tile">← Retour</button>
-
             <div class="progress-group">
               <div class="progress-head">
                 <span>Schedule</span>
@@ -76,7 +120,6 @@
               </div>
               <div class="progress-track"><div id="schedule-progress-fill" class="progress-fill"></div></div>
             </div>
-
             <div class="progress-group">
               <div class="progress-head">
                 <span>Habitudes</span>
@@ -84,7 +127,6 @@
               </div>
               <div class="progress-track"><div id="habit-progress-fill" class="progress-fill habit"></div></div>
             </div>
-
             <div class="progress-group">
               <div class="progress-head">
                 <span>Projets</span>
@@ -92,7 +134,6 @@
               </div>
               <div class="progress-track"><div id="project-progress-fill" class="progress-fill project"></div></div>
             </div>
-
             <div class="progress-group">
               <div class="progress-head">
                 <span>Progression totale</span>
@@ -100,7 +141,6 @@
               </div>
               <div class="progress-track"><div id="total-progress-fill" class="progress-fill total"></div></div>
             </div>
-
             <div class="progress-group">
               <div class="progress-head">
                 <span>Schedule bar</span>
@@ -112,6 +152,13 @@
       </section>
     </main>
 
+    <!-- Install / Download banner -->
+    <div id="install-banner" class="hidden" role="banner" aria-label="Installer l'application">
+      <span>📲 Installer MK Planner comme appli</span>
+      <button id="btn-install" type="button">⬇️ Télécharger l'app</button>
+      <button id="btn-install-close" type="button" aria-label="Fermer">×</button>
+    </div>
+
     <template id="habit-item-template">
       <li class="item-row">
         <label class="item-main">
@@ -121,7 +168,6 @@
         <button class="danger js-delete-habit" type="button">×</button>
       </li>
     </template>
-
     <template id="project-item-template">
       <li class="item-row">
         <label class="item-main">
@@ -133,5 +179,44 @@
     </template>
 
     <script src="app.js"></script>
+    <script>
+      // PWA: Register service worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(console.error);
+        });
+      }
+
+      // PWA: Show install banner
+      let deferredPrompt;
+      const banner = document.getElementById('install-banner');
+      const btnInstall = document.getElementById('btn-install');
+      const btnClose = document.getElementById('btn-install-close');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        banner.classList.remove('hidden');
+      });
+
+      btnInstall.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          deferredPrompt = null;
+        }
+        banner.classList.add('hidden');
+      });
+
+      btnClose.addEventListener('click', () => {
+        banner.classList.add('hidden');
+      });
+
+      // Hide banner if already installed
+      window.addEventListener('appinstalled', () => {
+        banner.classList.add('hidden');
+        deferredPrompt = null;
+      });
+    </script>
   </body>
 </html>
