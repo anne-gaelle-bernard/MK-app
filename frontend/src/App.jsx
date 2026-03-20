@@ -3,11 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 const STORAGE_KEY = "mkPlannerData_v2";
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const TRACKER_DOTS_PER_ITEM = 7;
-const APP_DOWNLOAD_URL = "https://github.com/anne-gaelle-bernard/MK-app/archive/refs/heads/main.zip";
 
 function emptyDaySchedules() {
   return DAYS.reduce((acc, day) => {
-    acc[day] = [];
     return acc;
   }, {});
 }
@@ -411,10 +409,7 @@ export default function App() {
       <main className="app">
         <header className="intro">
           <h1>MK App</h1>
-          <a className="download-app-btn" href={APP_DOWNLOAD_URL} target="_blank" rel="noreferrer">
-            Download App
-          </a>
-        </header>
+</          header>
 
         <section className="palette-grid">
           <article className={tileClass("midnight", "tile-midnight")} onClick={(event) => handleTileClick("midnight", event)}>
