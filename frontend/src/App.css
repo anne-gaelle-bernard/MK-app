@@ -88,17 +88,17 @@ body.splash-open {
 }
 
 .app {
-  .intro {
-    padding: 22px 24px;
-  }
   width: min(1120px, 94vw);
   margin: 24px auto;
   padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .intro {
-  margin-bottom: 18px;
-  padding: 18px 20px;
+  margin: 0;
+  padding: 22px 24px;
   border-radius: 16px;
   background: rgba(18, 44, 79, 0.08);
   border: 1px solid rgba(18, 44, 79, 0.14);
@@ -216,7 +216,7 @@ body.splash-open {
 .tile-body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   min-height: 0;
   flex: 1;
   overflow: auto;
@@ -338,6 +338,7 @@ body.splash-open {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr auto;
   gap: 12px;
+  margin-bottom: 4px;
 }
 
 .schedule-form input[type="time"] {
@@ -348,7 +349,7 @@ body.splash-open {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
 button {
@@ -380,7 +381,7 @@ button {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 14px;
+  gap: 16px;
   overflow: auto;
   min-height: 0;
 }
@@ -388,9 +389,10 @@ button {
 .item-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 10px;
-  padding: 12px;
+  gap: 12px;
+  padding: 14px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
@@ -448,12 +450,14 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .tracker-dots {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .tile-pearl .tracker-dot {
@@ -504,7 +508,7 @@ button {
 }
 
 .progress-group {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .progress-head {
@@ -546,8 +550,8 @@ button {
 .schedule-bar {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 6px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .bar-segment {
@@ -577,14 +581,15 @@ body.mobile-tile-open {
 
 @media (max-width: 760px) {
   .app {
-    width: 96vw;
-    margin: 12px auto;
-    padding-bottom: 24px;
+    width: min(560px, 96vw);
+    margin: 10px auto;
+    padding-bottom: 18px;
+    gap: 12px;
   }
 
   .intro {
-    margin-bottom: 10px;
-    padding: 10px 12px;
+    margin: 0;
+    padding: 12px 14px;
   }
 
   .intro p {
@@ -598,7 +603,7 @@ body.mobile-tile-open {
 
   .palette-grid {
     min-height: calc(100dvh - 20px);
-    gap: 12px;
+    gap: 10px;
     align-items: stretch;
   }
 
@@ -648,10 +653,10 @@ body.mobile-tile-open {
 
   .tile.active {
     position: fixed;
-    inset: 10px;
+    inset: 8px;
     z-index: 80;
     width: auto;
-    height: calc(100dvh - 20px);
+    height: calc(100dvh - 16px);
     min-height: 0;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     transform: none;
@@ -693,6 +698,7 @@ body.mobile-tile-open {
 
   .mini-form {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .day-tabs {
@@ -701,6 +707,7 @@ body.mobile-tile-open {
 
   .schedule-form {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .schedule-edit-grid {
@@ -721,13 +728,38 @@ body.mobile-tile-open {
   }
 
   .mini-form button,
-  .schedule-form button,
-  .danger {
+  .schedule-form button {
     width: 100%;
   }
 
-  .tracker-actions {
+  .day-schedule-head {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .item-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .item-main,
+  .row-actions,
+  .tracker-actions,
+  .tracker-dots {
     width: 100%;
+  }
+
+  .row-actions {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .danger {
+    width: auto;
+  }
+
+  .tracker-actions {
     justify-content: space-between;
   }
 
