@@ -91,7 +91,7 @@ function safeParseStorage() {
 
     if (parsed.tileTitles && typeof parsed.tileTitles === "object") {
       for (const key of Object.keys(tileTitles)) {
-        const fallback = key === "pearl" ? "Tracker" : "";
+        const fallback = key === "pearl" ? "" : "";
         tileTitles[key] =
           typeof parsed.tileTitles[key] === "string" && parsed.tileTitles[key].trim().length > 0
             ? parsed.tileTitles[key]
