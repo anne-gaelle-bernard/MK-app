@@ -699,7 +699,7 @@ export default function App() {
 
               <div className="progress-group">
                 <div className="progress-head">
-                  <span>Tracker</span>
+                  
                   <strong>{trackerPct}%</strong>
                 </div>
                 <div className="progress-track">
