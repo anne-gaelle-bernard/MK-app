@@ -6,7 +6,8 @@ const TRACKER_DOTS_PER_ITEM = 7;
 
 function emptyDaySchedules() {
   return DAYS.reduce((acc, day) => {
-    return acc;
+        acc[day] = [];
+        return acc;
   }, {});
 }
 
@@ -91,7 +92,7 @@ function safeParseStorage() {
 
     if (parsed.tileTitles && typeof parsed.tileTitles === "object") {
       for (const key of Object.keys(tileTitles)) {
-        const fallback = key === "pearl" ? "" : "";
+                  const fallback = key === "pearl" ? "Tracker" : "";
         tileTitles[key] =
           typeof parsed.tileTitles[key] === "string" && parsed.tileTitles[key].trim().length > 0
             ? parsed.tileTitles[key]
