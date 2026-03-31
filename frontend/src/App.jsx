@@ -14,7 +14,7 @@ function emptyDaySchedules() {
 function emptyTileTitles() {
   return {
     midnight: "",
-    pearl: "Tracker",
+    pearl: "",
     noir: "",
     ocean: ""
   };
