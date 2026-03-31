@@ -602,7 +602,7 @@ export default function App() {
                             type="button"
                             className={`tracker-dot${isFilled ? " filled" : ""}`}
                             onClick={() => toggleTrackerDot(item.id, index)}
-                            aria-label={`${item.name} J${index + 1}{index + 1}`}
+                            aria-label={`${item.name} J${index + 1}`}
                             aria-pressed={isFilled}
                           />
                         ))}
